@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shri Om Engineering Workshop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a237e, #3949ab, #7986cb);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff9800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo::before {
+            content: "🕉";
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 25px;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ff9800;
+            background: rgba(255, 152, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 35, 126, 0.8), rgba(57, 73, 171, 0.8)), 
+                        url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 80%, rgba(255, 152, 0, 0.2), transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(121, 134, 203, 0.3), transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            background: linear-gradient(45deg, #ff9800, #ffc107);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease 0.2s both;
+            color: #ff9800;
+            font-weight: bold;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.4s both;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff9800, #f57c00);
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            animation: fadeInUp 1s ease 0.6s both;
+            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, #f57c00, #e65100);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 152, 0, 0.6);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9fa, #e3f2fd);
+            position: relative;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 40 0 L 0 0 0 40' fill='none' stroke='%23e0e0e0' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)' /%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #1a237e;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff9800, #f57c00);
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(45deg, #ff9500, #f57c00);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: #00ffbf;
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #1a237e, #3949ab);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #1a237e;
+            font-weight: bold;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1a237e, #3949ab);
+            color: white;
+            position: relative;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #ff9800;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ff9800;
+        }
+
+        /* Booking Section */
+        .booking {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9fa, #fff);
+            position: relative;
+        }
+
+        .booking-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .booking-info {
+            padding: 2rem;
+        }
+
+        .booking-info h3 {
+            font-size: 2.5rem;
+            color: #1a237e;
+            margin-bottom: 2rem;
+        }
+
+        .booking-info ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .booking-info li {
+            padding: 0.5rem 0;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .booking-info li::before {
+            content: "✓";
+            color: #ff9800;
+            font-weight: bold;
+            width: 20px;
+            display: inline-block;
+        }
+
+        .booking-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 2px solid #e3f2fd;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #1a237e;
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: #fafafa;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff9800;
+            background: white;
+            box-shadow: 0 0 10px rgba(255, 152, 0, 0.2);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #e3f2fd, #f8f9fa);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(26, 35, 126, 0.9));
+            color: white;
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        .portfolio-overlay h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #ff9800;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a237e, #000051);
+            color: white;
+            padding: 4rem 0 2rem;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: #ff9800;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            line-height: 2;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #ff9800;
+        }
+
+        .footer-section .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 2px solid #3949ab;
+            color: #95a5a6;
+            font-size: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, white, #f8f9fa);
+            margin: 10% auto;
+            padding: 3rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .modal-content h2 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .modal-content p {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: #ff9800;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #1a237e, #3949ab);
+                flex-direction: column;
+                padding: 1rem 0;
+                border-radius: 0 0 20px 20px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-form {
+                padding: 2rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">Shri Om Engineering Works</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#booking">Book Now</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="floating">Shri Om Engineering Works</h1>
+                <div class="hero-subtitle">Excellence in Engineering & Fabrication</div>
+                <p>Professional welding, machining, and fabrication services with divine precision and modern technology</p>
+                <a href="#booking" class="btn">Get Quote Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Specialized Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">⚒</div>
+                    <h3>Custom Fabrication</h3>
+                    <p>Precision metal fabrication for industrial machinery, structural components, and custom engineering solutions with state-of-the-art equipment.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Machine Repair</h3>
+                    <p>Expert repair and maintenance services for industrial machinery, pumps, motors, and mechanical equipment restoration.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Arc & TIG Welding</h3>
+                    <p>Professional welding services including MIG, TIG, and Arc welding for steel, aluminum, and stainless steel applications.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏭</div>
+                    <h3>Industrial Solutions</h3>
+                    <p>Complete industrial engineering solutions including conveyor systems, material handling equipment, and production line setup.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔩</div>
+                    <h3>Precision Machining</h3>
+                    <p>CNC machining, turning, milling, and precision component manufacturing for automotive and industrial applications.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏗</div>
+                    <h3>Structural Work</h3>
+                    <p>Heavy-duty structural welding for buildings, bridges, and construction projects with certified welding standards.</p>
+                </div>
+  </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Why Choose Shri Om Engineering</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🏆</div>
+                    <h3>40+ Years Experience</h3>
+                    <p>Decades of expertise in engineering and fabrication</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✅</div>
+                    <h3>Quality Certified</h3>
+                    <p>ISO certified processes and quality assurance</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Quick Turnaround</h3>
+                    <p>Fast delivery without compromising quality</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💰</div>
+                    <h3>Competitive Pricing</h3>
+                    <p>Best rates in the industry with transparent pricing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking" id="booking">
+        <div class="container">
+            <h2 class="section-title">Request Your Project Quote</h2>
+            <div class="booking-container">
+                <div class="booking-info">
+                    <h3>Professional Engineering Services</h3>
+                    <ul>
+                        <li>Free consultation and site visit</li>
+                        <li>Detailed project analysis and costing</li>
+                        <li>Quality materials and modern equipment</li>
+                        <li>Skilled certified technicians</li>
+                        <li>Timely project completion</li>
+                        <li>Post-service support and warranty</li>
+                        <li>Emergency repair services available</li>
+                        <li>Custom design and engineering solutions</li>
+                    </ul>
+                    <p style="font-size: 1.2rem; color: #1a237e; font-weight: bold; margin-top: 2rem;">
+                        "देवो भव: आपकी समस्या का समाधान हमारी प्राथमिकता"
+                    </p>
+                </div>
+                <form class="booking-form" id="bookingForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="service">Service Required *</label>
+                            <select id="service" name="service" required>
+                                <option value="">Select Service</option>
+                                <option value="fabrication">Custom Fabrication</option>
+                                <option value="repair">Machine Repair</option>
+                                <option value="welding">Welding Services</option>
+                                <option value="industrial">Industrial Solutions</option>
+                                <option value="machining">Precision Machining</option>
+                                <option value="structural">Structural Work</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="urgency">Urgency Level</label>
+                            <select id="urgency" name="urgency">
+                                <option value="normal">Normal (5-7 days)</option>
+                                <option value="urgent">Urgent (2-3 days)</option>
+                                <option value="emergency">Emergency (Same day)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Project Budget Range</label>
+                        <select id="budget" name="budget">
+                            <option value="">Select Budget Range</option>
+                            <option value="under-10k">Under ₹10,000</option>
+                            <option value="10k-25k">₹10,000 - ₹25,000</option>
+                            <option value="25k-50k">₹25,000 - ₹50,000</option>
+                            <option value="50k-100k">₹50,000 - ₹1,00,000</option>
+                            <option value="above-100k">Above ₹1,00,000</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Project Details *</label>
+                        <textarea id="description" name="description" placeholder="Please describe your project requirements, materials needed, dimensions, and any specific requirements..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Submit Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Our Engineering Excellence</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/400/300" alt="Industrial Machinery">
+                    <div class="portfolio-overlay">
+                        <h3>Industrial Machinery</h3>
+                        <p>Custom manufacturing equipment</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/400/300" alt="Structural Fabrication">
+                    <div class="portfolio-overlay">
+                        <h3>Structural Fabrication</h3>
+                        <p>Heavy-duty steel structures</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/400/300" alt="Precision Components">
+                    <div class="portfolio-overlay">
+                        <h3>Precision Components</h3>
+                        <p>CNC machined parts</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/400/300" alt="Conveyor Systems">
+                    <div class="portfolio-overlay">
+                        <h3>Conveyor Systems</h3>
+                        <p>Material handling solutions</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/400/300" alt="Repair Services">
+                    <div class="portfolio-overlay">
+                        <h3>Equipment Repair</h3>
+                        <p>Motor and pump restoration</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/400/300" alt="Custom Solutions">
+                    <div class="portfolio-overlay">
+                        <h3>Custom Engineering</h3>
+                        <p>Specialized project solutions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🕉 Shri Om Engineering Work</h3>
+                    <p>Excellence in Engineering & Fabrication</p>
+                    <p style="color: #ff9800; font-weight: bold; margin-top: 1rem;">
+                        "हर काम में भगवान का आशीर्वाद"
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <span>📞</span>
+                        <a href="tel:8079078073">8079078073</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>✉</span>
+                        <a href="mailto:pr569336@gmail.com">pr569336@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <p>Industrial Area, Engineering Hub<br> THIKRANA MEHNDRATHAN SENDRA ROAD BEAWAR (305901) RAJ. </p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Business Hours</h3>
+                    <p>Monday - Saturday: 8:00 AM - 8:00 PM</p>
+                    <p>Sunday: 10:00 AM - 4:00 PM</p>
+                    <p style="color: #ff9800; margin-top: 1rem;">Emergency Services: 24/7</p>
+                    <p style="margin-top: 1rem;">
+                        <strong>WhatsApp:</strong> <a href="https://wa.me/918079078073" style="color: #25D366;">8079078073</a>
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3>Our Expertise</h3>
+                    <p>✓ Certified Welders & Engineers</p>
+                    <p>✓ Modern Equipment & Technology</p>
+                    <p>✓ Quality Materials Only</p>
+                    <p>✓ 40+ Years Experience</p>
+                    <p>✓ Licensed & Insured</p>
+                    <p>✓ Customer Satisfaction Guaranteed</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Shri Om Engineering Workshop. All rights reserved. | Designed with devotion and precision</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>🙏 Request Submitted Successfully!</h2>
+            <p>Thank you for choosing Shri Om Engineering Workshop. We'll contact you within 2 hours to discuss your project requirements.</p>
+            <p style="color: #ff9800; font-weight: bold;">"आपका काम, हमारी जिम्मेदारी"</p>
+            <button class="btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Form submission handling
+        const bookingForm = document.getElementById('bookingForm');
+        const successModal = document.getElementById('successModal');
+
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(bookingForm);
+            let isValid = true;
+            
+            // Check required fields
+            const requiredFields = ['name', 'phone', 'service', 'description'];
+            requiredFields.forEach(field => {
+                if (!formData.get(field)) {
+                    isValid = false;
+                    document.getElementById(field).style.borderColor = '#e74c3c';
+                } else {
+                    document.getElementById(field).style.borderColor = '#e0e0e0';
+                }
+            });
+
+            // Phone validation (Indian mobile number)
+            const phone = formData.get('phone');
+            const phoneRegex = /^[6-9]\d{9}$/;
+            if (!phoneRegex.test(phone.replace(/\D/g, '').slice(-10))) {
+                isValid = false;
+                document.getElementById('phone').style.borderColor = '#e74c3c';
+                alert('Please enter a valid 10-digit mobile number.');
+                return;
+            }
+
+            // Email validation (if provided)
+            const email = formData.get('email');
+            if (email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    isValid = false;
+                    document.getElementById('email').style.borderColor = '#e74c3c';
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+            }
+
+            if (isValid) {
+                console.log('Form submitted with data:', Object.fromEntries(formData));
+                successModal.style.display = 'block';
+                bookingForm.reset();
+                
+                // In a real application, you would send this data to your server
+                // Example: sendWhatsAppMessage(formData);
+            } else {
+                alert('Please fill in all required fields correctly.');
+            }
+        });
+
+        // Function to send WhatsApp message (example)
+        function sendWhatsAppMessage(formData) {
+            const phone = "8079078073";
+            const message = `New Service Request from Shri Om Engineering Website:
+            
+Name: ${formData.get('name')}
+Phone: ${formData.get('phone')}
+Email: ${formData.get('email') || 'Not provided'}
+Service: ${formData.get('service')}
+Urgency: ${formData.get('urgency')}
+Budget: ${formData.get('budget') || 'Not specified'}
+Details: ${formData.get('description')}`;
+            
+            const whatsappUrl = https://wa.me/91${phone}?text=${encodeURIComponent(message)};
+            // window.open(whatsappUrl, '_blank');
+        }
+
+        // Modal functionality
+        const closeBtn = document.querySelector('.close');
+        
+        closeBtn.addEventListener('click', closeModal);
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === successModal) {
+                closeModal();
+            }
+        });
+
+        function closeModal() {
+            successModal.style.display = 'none';
+        }
+
+        // Header scroll effect
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) {
+                header.style.background = 'linear-gradient(135deg, rgba(26, 35, 126, 0.95), rgba(57, 73, 171, 0.95))';
+                header.style.backdropFilter = 'blur(15px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #1a237e, #3949ab, #7986cb)';
+                header.style.backdropFilter = 'blur(10px)';
+            }
+            
+            if (scrollTop > lastScrollTop && scrollTop > 200) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Add fade-in animation to elements when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards and portfolio items
+        document.querySelectorAll('.service-card, .portfolio-item, .feature-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Portfolio item click handling
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const title = item.querySelector('.portfolio-overlay h3').textContent;
+                alert(${title}\n\nFor detailed project information and similar work samples, please contact us at 8079078073);
+            });
+        });
+
+        // Button loading states
+        const submitBtn = document.querySelector('button[type="submit"]');
+        submitBtn.addEventListener('click', () => {
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // Add typing effect to hero subtitle
+        const subtitle = document.querySelector('.hero-subtitle');
+        const text = subtitle.textContent;
+        subtitle.textContent = '';
+        
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                subtitle.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        
+        setTimeout(typeWriter, 1000);
+
+        // Add click to call functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+            phoneLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if (window.innerWidth > 768) {
+                        e.preventDefault();
+                        alert('Call us at: 8079078073\n\nOn mobile devices, this will directly call the number.');
+                    }
+                });
+            });
+        });
+    </script>
